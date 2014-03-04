@@ -26,14 +26,14 @@ function dataLoaded(UNEMPDATA) {
 	//create options object to actually customize the look if the chart
 	
 	var chartOptions = {
-          title: 'Unemployment since 1948'
+          title: 'Unemployment since 1980'
         };
 
 	
 	//tell it to create a line chart, and give it the 
 	var myChart = new google.visualization.LineChart(document.getElementById("MyChart"));
 	
-	//tell it 
+	//tell it to show the title
 	myChart.draw(gDataTable, chartOptions);
 }
 
@@ -44,7 +44,8 @@ function googleLoaded() {
 	//Instead of loading data from a static json file,
 	//I'm going to load it from a Google Fusion Table
 	
-	$.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1I1IanRhd9RKxe1emSFkg2LgRFIa2GTqcKSntGhBN&key=AIzaSyBJWD4UulDQQMtDdtacaCD03MInkDsb61g", dataLoaded, "json");
+	$.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1I1IanRhd9RKxe1emSFkg2LgRFIa2GTqcKSntGhBN+WHERE+DATE%3E%271979-01-01%27+&key=AIzaSyBJWD4UulDQQMtDdtacaCD03MInkDsb61g", dataLoaded, "json");
+	
 	
 }
 
