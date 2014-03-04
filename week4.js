@@ -7,49 +7,34 @@ console.log("hi there");
 function dataLoaded(UNEMPDATA) {
 
 	console.log(UNEMPDATA);
-
-	var myObsData = UNEMPDATA.observations;
-
-	//I am trying to construct an array of arrays
-	var myDataArray = [];
-	//console.log(myDataArray);
-	//wait a second, I need headers to be the first
-	//
 	
-	var headerArray = ["Date", "value"];
+	var gDataTable = new google.visualization.DataTable();
 	
-	myDataArray.push(headerArray);
+	//when I add columns, the first parameter is the data type in the column
+	//the second parameter is the name of the columns 
+	
+	gDataTable.addColumn('string', UNEMPDATA.columns[0]); //only works because it is a google.visualization object
+	
+	gDataTable.addColumn('number', UNEMPDATA.columns[1]);
+	
+	gDataTable.addRows(UNEMPDATA.rows);//only works because this is a google.visualization object
 	
 
-	//specify starting point and ending point
-	for (var i = 0; i < myObsData.length; i++){
-
-		//create reference to current object in list
-		var currObj = myObsData[i]
-
-		var currArray = [currObj.date, Number(currObj.value)];
-
-		myDataArray.push(currArray);
-
-		//end for loop
-	}
 	
-	console.log(myDataArray);
-	
-	
-	//feed data to visualization library
-	var myDataTable = google.visualization.arrayToDataTable(myDataArray);
+
 	
 	//create options object to actually customize the look if the chart
 	
-	var options = {
-          title: 'Unemployment rate'
+	var chartOptions = {
+          title: 'Unemployment since 1948'
         };
 
 	
 	//tell it to create a line chart, and give it the 
 	var myChart = new google.visualization.LineChart(document.getElementById("MyChart"));
-	myChart.draw(myDataTable);
+	
+	//tell it 
+	myChart.draw(gDataTable, chartOptions);
 }
 
 function googleLoaded() {
