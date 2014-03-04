@@ -20,9 +20,7 @@ function dataLoaded(UNEMPDATA) {
 	gDataTable.addRows(UNEMPDATA.rows);//only works because this is a google.visualization object
 	
 
-	
-
-	
+		
 	//create options object to actually customize the look if the chart
 	
 	var chartOptions = {
